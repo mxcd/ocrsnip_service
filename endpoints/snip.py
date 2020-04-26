@@ -24,6 +24,11 @@ def register_endpoint(app):
         x2 = float(request.args["x2"])
         y2 = float(request.args["y2"])
 
+        if x1 > x2:
+            x1, x2 = x2, x1
+        if y1 > y2:
+            y1, y2 = y2, y1
+
         img = get_image(id, secret)
         if img is None:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
