@@ -22,16 +22,22 @@ def add_image(img):
 
 
 def get_image(id, secret):
-    if secrets[id] == secret:
-        return images[id]
+    if id in secrets:
+        if secrets[id] == secret:
+            return images[id]
+        else:
+            return None
     else:
         return None
 
 
 def delete_image(id, secret):
-    if secrets[id] == secret:
-        _delete_image(id)
-        return True
+    if id in secrets:
+        if secrets[id] == secret:
+            _delete_image(id)
+            return True
+        else:
+            return False
     else:
         return False
 
